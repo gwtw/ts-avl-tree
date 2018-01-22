@@ -1,8 +1,8 @@
 import test from 'ava';
-import Tree from '../';
+import { AvlTree } from '../';
 
 test('should return the size of the tree', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   t.is(tree.get(1), null);
   t.is(tree.get(2), null);
   t.is(tree.get(3), null);

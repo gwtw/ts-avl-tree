@@ -1,8 +1,8 @@
 import test from 'ava';
-import Tree from '../';
+import { AvlTree } from '../';
 
 test('should return the minimum key in the tree', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   tree.insert(5, null);
   tree.insert(3, null);
   tree.insert(1, null);

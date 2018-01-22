@@ -1,17 +1,17 @@
 import test from 'ava';
-import Tree from '../';
+import { AvlTree } from '../';
 
 test('should not change the size of a tree with no root', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   tree.delete(1);
-  t.is(tree.size(), 0);
+  t.is(tree.size, 0);
 });
 
 test('should delete a single key', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   tree.insert(1);
   tree.delete(1);
-  t.true(tree.isEmpty());
+  t.true(tree.isEmpty);
 });
 
 /**
@@ -22,7 +22,7 @@ test('should delete a single key', function (t) {
  *   1   3                           3
  */
 test('should correctly balance the left left case', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   tree.insert(4, 4);
   tree.insert(2, 2);
   tree.insert(6, 6);
@@ -51,7 +51,7 @@ test('should correctly balance the left left case', function (t) {
  *         5   7                  5
  */
 test('should correctly balance the right right case', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   tree.insert(4, 4);
   tree.insert(2, 2);
   tree.insert(6, 6);
@@ -82,7 +82,7 @@ test('should correctly balance the right right case', function (t) {
  *     3   5
  */
 test('should correctly balance the left right case', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   tree.insert(6, 6);
   tree.insert(2, 2);
   tree.insert(7, 7);
@@ -118,7 +118,7 @@ test('should correctly balance the left right case', function (t) {
  *       4   6
  */
 test('should correctly balance the right left case', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   tree.insert(3, 3);
   tree.insert(2, 2);
   tree.insert(7, 7);
@@ -145,7 +145,7 @@ test('should correctly balance the right left case', function (t) {
 });
 
 test('should take the right child if the left does not exist', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   tree.insert(1, 1);
   tree.insert(2, 2);
   tree.delete(1);
@@ -154,7 +154,7 @@ test('should take the right child if the left does not exist', function (t) {
 });
 
 test('should take the left child if the right does not exist', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   tree.insert(2, 2);
   tree.insert(1, 1);
   tree.delete(2);
@@ -163,7 +163,7 @@ test('should take the left child if the right does not exist', function (t) {
 });
 
 test('should get the right child if the node has 2 leaf children', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   tree.insert(2, 2);
   tree.insert(1, 1);
   tree.insert(3, 3);
@@ -173,7 +173,7 @@ test('should get the right child if the node has 2 leaf children', function (t) 
 });
 
 test('should get the in-order successor if the node has both children', function (t) {
-  var tree = new Tree();
+  var tree = new AvlTree();
   tree.insert(2, 2);
   tree.insert(1, 1);
   tree.insert(4, 4);
