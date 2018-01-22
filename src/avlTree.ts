@@ -9,15 +9,19 @@ import { Node } from './node';
 
 export type CompareFunction<K> = (a: K, b: K) => number;
 
-
 /**
  * Represents how balanced a node's left and right children are.
  */
 enum BalanceState {
+  /** Right child's height is 2+ greater than left child's height */
   UNBALANCED_RIGHT,
+  /** Right child's height is 1 greater than left child's height */
   SLIGHTLY_UNBALANCED_RIGHT,
+  /** Left and right children have the same height */
   BALANCED,
+  /** Left child's height is 1 greater than right child's height */
   SLIGHTLY_UNBALANCED_LEFT,
+  /** Left child's height is 2+ greater than right child's height */
   UNBALANCED_LEFT
 }
 
@@ -27,7 +31,7 @@ export class AvlTree<K, V> {
 
   /**
    * Creates a new AVL Tree.
-   * @param customCompare An optional custom compare function.
+   * @param _compare An optional custom compare function.
    */
   constructor(
     private _compare?: CompareFunction<K>
@@ -55,7 +59,6 @@ export class AvlTree<K, V> {
 
   /**
    * Inserts a new node with a specific key into the tree.
-   *
    * @param key The key being inserted.
    * @param value The value being inserted.
    */

@@ -20,6 +20,7 @@
     "tree"
   ],
   "main": "lib/avlTree.js",
+  "types": "typings/avl-tree.d.ts",
   "author": "Daniel Imms (http://www.growingwiththeweb.com)",
   "license": "MIT",
   "bugs": {
@@ -32,5 +33,14 @@
     "nyc": "^11.4.1",
     "tslint": "^5.8.0",
     "typescript": "^2.6.2"
-  }
+  },
+  "files": [
+    "lib/*.js",
+    "lib/*.js.map",
+    "lib/**/*.js",
+    "lib/**/*.js.map",
+    "src/*.ts",
+    "src/**/*.ts",
+    "typings/*.d.ts"
+  ]
 }
