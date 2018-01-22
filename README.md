@@ -20,6 +20,8 @@ npm install --save @tyriar/avl-tree
 
 ## Usage
 
+See the [typings file](./typings/avl-tree.d.ts) for the full API.
+
 ```typescript
 // Import npm module
 import { AvlTree } from '@tyriar/avl-tree';
