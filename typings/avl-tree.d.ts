@@ -12,11 +12,6 @@ declare module '@tyriar/avl-heap' {
    */
   export class AvlTree<K, V> {
     /**
-     * Gets the maximum key in the tree.
-     */
-    public findMaximum: K;
-
-    /**
      * Gets the size of the tree.
      */
     public size: number;
@@ -63,5 +58,10 @@ declare module '@tyriar/avl-heap' {
      * @return The minimum key in the tree.
      */
     public findMinimum(): K;
+
+    /**
+     * Gets the maximum key in the tree.
+     */
+    public findMaximum(): K;
   }
 }
