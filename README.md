@@ -25,7 +25,7 @@ npm install --save @tyriar/avl-tree
 import { AvlTree } from '@tyriar/avl-tree';
 
 // Construct AvlTree
-const tree = new AvlTree();
+const tree = new AvlTree<number, number>();
 
 // Insert keys
 tree.insert(1);
@@ -33,7 +33,7 @@ tree.insert(2);
 tree.insert(3);
 tree.insert(4);
 tree.insert(5);
-console.log('size: ' + tree.size());
+console.log('size: ' + tree.size);
 console.log('contains 2: ' + tree.contains(2));
 console.log('contains 7: ' + tree.contains(7));
 // > size: 5
@@ -42,13 +42,13 @@ console.log('contains 7: ' + tree.contains(7));
 
 // Delete a key
 tree.delete(2);
-console.log('size: ' + tree.size());
+console.log('size: ' + tree.size);
 console.log('contains 2: ' + tree.contains(2));
 // > size: 4
 // > contains 2: false
 
 // Construct custom compare AvlTree
-const tree2 = new AvlTree(function (a, b) {
+const tree2 = new AvlTree<string, string>(function (a, b) {
   return a.localeCompare(b);
 });
 tree2.insert('a');
