@@ -6,7 +6,7 @@
 
 import { CompareFunction } from '../src/avlTree';
 
-declare module '@tyriar/avl-heap' {
+declare module '@tyriar/avl-tree' {
   /**
    * An AVL tree data structure with a key and optional value.
    */
