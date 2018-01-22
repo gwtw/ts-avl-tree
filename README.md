@@ -1,9 +1,9 @@
-# js-avl-tree
+# ts-avl-tree
 
-[![Build Status](https://travis-ci.org/gwtw/js-avl-tree.svg?branch=master)](http://travis-ci.org/gwtw/js-avl-tree)
-[![Coverage Status](https://coveralls.io/repos/github/gwtw/js-avl-tree/badge.svg?branch=master)](https://coveralls.io/github/gwtw/js-avl-tree?branch=master)
+[![Build Status](https://travis-ci.org/gwtw/ts-avl-tree.svg?branch=master)](http://travis-ci.org/gwtw/ts-avl-tree)
+[![Coverage Status](https://coveralls.io/repos/github/gwtw/ts-avl-tree/badge.svg?branch=master)](https://coveralls.io/github/gwtw/ts-avl-tree?branch=master)
 
-A JavaScript implementation of the [AVL tree](http://www.growingwiththeweb.com/data-structures/avl-tree/overview/) data structure.
+A TypeScript implementation of the [AVL tree](http://www.growingwiththeweb.com/data-structures/avl-tree/overview/) data structure.
 
 ![](http://www.growingwiththeweb.com/images/data-structures/avl-tree/avl-tree.svg)
 
@@ -20,12 +20,12 @@ npm install --save @tyriar/avl-tree
 
 ## Usage
 
-```javascript
+```typescript
 // Import npm module
-var AvlTree = require('@tyriar/avl-tree');
+import { AvlTree } from '@tyriar/avl-tree';
 
 // Construct AvlTree
-var tree = new AvlTree();
+const tree = new AvlTree();
 
 // Insert keys
 tree.insert(1);
@@ -48,19 +48,19 @@ console.log('contains 2: ' + tree.contains(2));
 // > contains 2: false
 
 // Construct custom compare AvlTree
-tree = new AvlTree(function (a, b) {
+const tree2 = new AvlTree(function (a, b) {
   return a.localeCompare(b);
 });
-tree.insert('a');
-tree.insert('A');
-tree.insert('b');
-tree.insert('B');
+tree2.insert('a');
+tree2.insert('A');
+tree2.insert('b');
+tree2.insert('B');
 
 // Delete the minimum key
-var minKey = tree.findMinimum();
-tree.delete(minKey);
+const minKey = tree2.findMinimum();
+tree2.delete(minKey);
 console.log('minKey: ' + minKey);
-console.log('new minKey: ' + tree.findMinimum());
+console.log('new minKey: ' + tree2.findMinimum());
 // > min key: 'a'
 // > new min key: 'A'
 ```
