@@ -219,11 +219,12 @@ export class AvlTree<K, V> {
    * @return The value of the node or null if it doesn't exist.
    */
   private _get(key: K, root: Node<K, V>): Node<K, V> {
-    if (key === root.key) {
+    const result = this._compare(key, root.key);
+    if (result === 0) {
       return root;
     }
 
-    if (this._compare(key, root.key) < 0) {
+    if (result < 0) {
       if (!root.left) {
         return null;
       }
