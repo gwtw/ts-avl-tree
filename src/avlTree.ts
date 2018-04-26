@@ -11,7 +11,7 @@ export type CompareFunction<K> = (a: K, b: K) => number;
 /**
  * Represents how balanced a node's left and right children are.
  */
-enum BalanceState {
+const enum BalanceState {
   /** Right child's height is 2+ greater than left child's height */
   UNBALANCED_RIGHT,
   /** Right child's height is 1 greater than left child's height */
