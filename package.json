@@ -40,9 +40,10 @@
   "files": [
     "lib/**/*.js",
     "lib/**/*.js.map",
+    "!lib/test",
     "src/*.ts",
     "src/**/*.ts",
-    "typings/*.d.ts",
-    "!lib/test"
+    "!src/test",
+    "typings/*.d.ts"
   ]
 }
