@@ -9,7 +9,8 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictFunctionTypes": true,
-    "strictPropertyInitialization": true
+    "strictPropertyInitialization": true,
+    "preserveWatchOutput": true
   },
   "exclude": [
     "node_modules",

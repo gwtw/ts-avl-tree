@@ -25,7 +25,7 @@ const enum BalanceState {
 }
 
 export class AvlTree<K, V> {
-  private _root: Node<K, V> = null;
+  protected _root: Node<K, V> = null;
   private _size: number = 0;
 
   /**
