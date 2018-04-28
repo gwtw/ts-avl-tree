@@ -38,12 +38,11 @@
     "typescript": "^2.8.3"
   },
   "files": [
-    "lib/*.js",
-    "lib/*.js.map",
     "lib/**/*.js",
     "lib/**/*.js.map",
     "src/*.ts",
     "src/**/*.ts",
-    "typings/*.d.ts"
+    "typings/*.d.ts",
+    "!lib/test"
   ]
 }
