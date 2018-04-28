@@ -177,10 +177,9 @@ export class AvlTree<K, V> {
         return root.rotateRight();
       }
       // Left right case
-      if (this._getBalanceState(root.left) === BalanceState.SLIGHTLY_UNBALANCED_RIGHT) {
-        root.left = root.left.rotateLeft();
-        return root.rotateRight();
-      }
+      // this._getBalanceState(root.left) === BalanceState.SLIGHTLY_UNBALANCED_RIGHT
+      root.left = root.left.rotateLeft();
+      return root.rotateRight();
     }
 
     if (balanceState === BalanceState.UNBALANCED_RIGHT) {
@@ -190,10 +189,9 @@ export class AvlTree<K, V> {
         return root.rotateLeft();
       }
       // Right left case
-      if (this._getBalanceState(root.right) === BalanceState.SLIGHTLY_UNBALANCED_LEFT) {
-        root.right = root.right.rotateRight();
-        return root.rotateLeft();
-      }
+      // this._getBalanceState(root.right) === BalanceState.SLIGHTLY_UNBALANCED_LEFT
+      root.right = root.right.rotateRight();
+      return root.rotateLeft();
     }
 
     return root;
