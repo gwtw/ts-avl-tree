@@ -4,7 +4,7 @@
   "description": "An implementation of the AVL tree data structure",
   "scripts": {
     "build": "tsc",
-    "lint": "tslint 'src/**/*.ts'",
+    "lint": "tslint --project .",
     "test": "nyc mocha lib/test/*.test.js",
     "watch": "tsc -w",
     "prepublish": "npm run build"
