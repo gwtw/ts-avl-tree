@@ -6,6 +6,7 @@
     "build": "tsc",
     "lint": "tslint --project .",
     "test": "nyc mocha lib/test/*.test.js",
+    "test-report": "nyc --reporter html mocha lib/test/*.test.js",
     "watch": "tsc -w",
     "prepublish": "npm run build"
   },
