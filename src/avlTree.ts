@@ -90,24 +90,24 @@ export class AvlTree<K, V> implements AvlTreeApi<K, V> {
     root.height = Math.max(root.leftHeight, root.rightHeight) + 1;
     const balanceState = this._getBalanceState(root);
 
-    if (root.left && balanceState === BalanceState.UNBALANCED_LEFT) {
-      if (this._compare(key, root.left.key) < 0) {
+    if (balanceState === BalanceState.UNBALANCED_LEFT) {
+      if (this._compare(key, (<Node<K, V>>root.left).key) < 0) {
         // Left left case
         root = root.rotateRight();
       } else {
         // Left right case
-        root.left = root.left.rotateLeft();
+        root.left = (<Node<K, V>>root.left).rotateLeft();
         return root.rotateRight();
       }
     }
 
-    if (root.right && balanceState === BalanceState.UNBALANCED_RIGHT) {
-      if (this._compare(key, root.right.key) > 0) {
+    if (balanceState === BalanceState.UNBALANCED_RIGHT) {
+      if (this._compare(key, (<Node<K, V>>root.right).key) > 0) {
         // Right right case
         root = root.rotateLeft();
       } else {
         // Right left case
-        root.right = root.right.rotateRight();
+        root.right = (<Node<K, V>>root.right).rotateRight();
         return root.rotateLeft();
       }
     }
@@ -168,27 +168,27 @@ export class AvlTree<K, V> implements AvlTreeApi<K, V> {
     root.height = Math.max(root.leftHeight, root.rightHeight) + 1;
     const balanceState = this._getBalanceState(root);
 
-    if (root.left && balanceState === BalanceState.UNBALANCED_LEFT) {
+    if (balanceState === BalanceState.UNBALANCED_LEFT) {
       // Left left case
-      if (this._getBalanceState(root.left) === BalanceState.BALANCED ||
-          this._getBalanceState(root.left) === BalanceState.SLIGHTLY_UNBALANCED_LEFT) {
+      if (this._getBalanceState((<Node<K, V>>root.left)) === BalanceState.BALANCED ||
+          this._getBalanceState((<Node<K, V>>root.left)) === BalanceState.SLIGHTLY_UNBALANCED_LEFT) {
         return root.rotateRight();
       }
       // Left right case
       // this._getBalanceState(root.left) === BalanceState.SLIGHTLY_UNBALANCED_RIGHT
-      root.left = root.left.rotateLeft();
+      root.left = (<Node<K, V>>root.left).rotateLeft();
       return root.rotateRight();
     }
 
-    if (root.right && balanceState === BalanceState.UNBALANCED_RIGHT) {
+    if (balanceState === BalanceState.UNBALANCED_RIGHT) {
       // Right right case
-      if (this._getBalanceState(root.right) === BalanceState.BALANCED ||
-          this._getBalanceState(root.right) === BalanceState.SLIGHTLY_UNBALANCED_RIGHT) {
+      if (this._getBalanceState((<Node<K, V>>root.right)) === BalanceState.BALANCED ||
+          this._getBalanceState((<Node<K, V>>root.right)) === BalanceState.SLIGHTLY_UNBALANCED_RIGHT) {
         return root.rotateLeft();
       }
       // Right left case
       // this._getBalanceState(root.right) === BalanceState.SLIGHTLY_UNBALANCED_LEFT
-      root.right = root.right.rotateRight();
+      root.right = (<Node<K, V>>root.right).rotateRight();
       return root.rotateLeft();
     }
 
