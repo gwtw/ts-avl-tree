@@ -23,6 +23,7 @@ export class Node<K, V> {
   /**
    * Performs a right rotate on this node.
    * @return The root of the sub-tree; the node where this node used to be.
+   * @throws If Node.left is null.
    */
   public rotateRight(): Node<K, V> {
     //     b                           a
@@ -30,10 +31,7 @@ export class Node<K, V> {
     //   a   e -> b.rotateRight() -> c   b
     //  / \                             / \
     // c   d                           d   e
-    if (!this.left) {
-      throw new Error('Cannot rotate node right without a left child');
-    }
-    const other = this.left;
+    const other = <Node<K, V>>this.left;
     this.left = other.right;
     other.right = this;
     this.height = Math.max(this.leftHeight, this.rightHeight) + 1;
@@ -44,6 +42,7 @@ export class Node<K, V> {
   /**
    * Performs a left rotate on this node.
    * @return The root of the sub-tree; the node where this node used to be.
+   * @throws If Node.right is null.
    */
   public rotateLeft(): Node<K, V> {
     //   a                              b
@@ -51,10 +50,7 @@ export class Node<K, V> {
     // c   b   -> a.rotateLeft() ->   a   e
     //    / \                        / \
     //   d   e                      c   d
-    if (!this.right) {
-      throw new Error('Cannot rotate node left without a right child');
-    }
-    const other = this.right;
+    const other = <Node<K, V>>this.right;
     this.right = other.left;
     other.left = this;
     this.height = Math.max(this.leftHeight, this.rightHeight) + 1;

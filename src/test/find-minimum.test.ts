@@ -2,6 +2,11 @@ import { assert } from 'chai';
 import { TestAvlTree } from './testUtils';
 
 describe('findMinimum', () => {
+  it('should return null when the tree is empty', () => {
+    const tree = new TestAvlTree();
+    assert.equal(tree.findMinimum(), null);
+  });
+
   it('should return the minimum key in the tree', () => {
     const tree = new TestAvlTree();
     tree.insert(5);
