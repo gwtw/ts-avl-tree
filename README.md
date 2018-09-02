@@ -5,6 +5,8 @@
 
 A TypeScript implementation of the [AVL tree](http://www.growingwiththeweb.com/data-structures/avl-tree/overview/) data structure.
 
+Note that the primary purpose of this library is education but it should work in a production environment as well. It's certainly not as performant as it could be as it optimises for readability, abstraction and safety over raw performance.
+
 ![](http://www.growingwiththeweb.com/images/data-structures/avl-tree/avl-tree.svg)
 
 ## Features

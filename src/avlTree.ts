@@ -5,8 +5,7 @@
  */
 
 import { Node } from './node';
-
-export type CompareFunction<K> = (a: K, b: K) => number;
+import { AvlTree as AvlTreeApi, CompareFunction } from '@tyriar/avl-tree';
 
 /**
  * Represents how balanced a node's left and right children are.
@@ -24,20 +23,19 @@ const enum BalanceState {
   UNBALANCED_LEFT
 }
 
-export class AvlTree<K, V> {
-  protected _root: Node<K, V> = null;
+export class AvlTree<K, V> implements AvlTreeApi<K, V> {
+  protected _root: Node<K, V> | null = null;
   private _size: number = 0;
+  private _compare: CompareFunction<K>;
 
   /**
    * Creates a new AVL Tree.
    * @param _compare An optional custom compare function.
    */
   constructor(
-    private _compare?: CompareFunction<K>
+    compare?: CompareFunction<K>
   ) {
-    if (!_compare) {
-      this._compare = this._defaultCompare;
-    }
+    this._compare = compare ? compare : this._defaultCompare;
   }
 
   /**
@@ -72,7 +70,7 @@ export class AvlTree<K, V> {
    * @param root The root of the tree to insert in.
    * @return The new tree root.
    */
-  private _insert(key: K, value: V, root: Node<K, V>): Node<K, V> {
+  private _insert(key: K, value: V | undefined, root: Node<K, V> | null): Node<K, V> {
     // Perform regular BST insertion
     if (root === null) {
       return new Node(key, value);
@@ -93,23 +91,23 @@ export class AvlTree<K, V> {
     const balanceState = this._getBalanceState(root);
 
     if (balanceState === BalanceState.UNBALANCED_LEFT) {
-      if (this._compare(key, root.left.key) < 0) {
+      if (this._compare(key, (<Node<K, V>>root.left).key) < 0) {
         // Left left case
         root = root.rotateRight();
       } else {
         // Left right case
-        root.left = root.left.rotateLeft();
+        root.left = (<Node<K, V>>root.left).rotateLeft();
         return root.rotateRight();
       }
     }
 
     if (balanceState === BalanceState.UNBALANCED_RIGHT) {
-      if (this._compare(key, root.right.key) > 0) {
+      if (this._compare(key, (<Node<K, V>>root.right).key) > 0) {
         // Right right case
         root = root.rotateLeft();
       } else {
         // Right left case
-        root.right = root.right.rotateRight();
+        root.right = (<Node<K, V>>root.right).rotateRight();
         return root.rotateLeft();
       }
     }
@@ -132,7 +130,7 @@ export class AvlTree<K, V> {
    * @param root The root of the tree to delete from.
    * @return The new tree root.
    */
-  private _delete(key: K, root: Node<K, V>): Node<K, V> {
+  private _delete(key: K, root: Node<K, V> | null): Node<K, V> | null {
     // Perform regular BST deletion
     if (root === null) {
       this._size++;
@@ -155,7 +153,7 @@ export class AvlTree<K, V> {
         root = root.left;
       } else {
         // Node has 2 children, get the in-order successor
-        const inOrderSuccessor = this._minValueNode(root.right);
+        const inOrderSuccessor = this._minValueNode(<Node<K, V>>root.right);
         root.key = inOrderSuccessor.key;
         root.value = inOrderSuccessor.value;
         root.right = this._delete(inOrderSuccessor.key, root.right);
@@ -172,25 +170,25 @@ export class AvlTree<K, V> {
 
     if (balanceState === BalanceState.UNBALANCED_LEFT) {
       // Left left case
-      if (this._getBalanceState(root.left) === BalanceState.BALANCED ||
-          this._getBalanceState(root.left) === BalanceState.SLIGHTLY_UNBALANCED_LEFT) {
+      if (this._getBalanceState((<Node<K, V>>root.left)) === BalanceState.BALANCED ||
+          this._getBalanceState((<Node<K, V>>root.left)) === BalanceState.SLIGHTLY_UNBALANCED_LEFT) {
         return root.rotateRight();
       }
       // Left right case
       // this._getBalanceState(root.left) === BalanceState.SLIGHTLY_UNBALANCED_RIGHT
-      root.left = root.left.rotateLeft();
+      root.left = (<Node<K, V>>root.left).rotateLeft();
       return root.rotateRight();
     }
 
     if (balanceState === BalanceState.UNBALANCED_RIGHT) {
       // Right right case
-      if (this._getBalanceState(root.right) === BalanceState.BALANCED ||
-          this._getBalanceState(root.right) === BalanceState.SLIGHTLY_UNBALANCED_RIGHT) {
+      if (this._getBalanceState((<Node<K, V>>root.right)) === BalanceState.BALANCED ||
+          this._getBalanceState((<Node<K, V>>root.right)) === BalanceState.SLIGHTLY_UNBALANCED_RIGHT) {
         return root.rotateLeft();
       }
       // Right left case
       // this._getBalanceState(root.right) === BalanceState.SLIGHTLY_UNBALANCED_LEFT
-      root.right = root.right.rotateRight();
+      root.right = (<Node<K, V>>root.right).rotateRight();
       return root.rotateLeft();
     }
 
@@ -200,14 +198,20 @@ export class AvlTree<K, V> {
   /**
    * Gets the value of a node within the tree with a specific key.
    * @param key The key being searched for.
-   * @return The value of the node or null if it doesn't exist.
+   * @return The value of the node (which may be undefined), or null if it
+   * doesn't exist.
    */
-  public get(key: K): V {
+  public get(key: K): V | undefined | null {
     if (this._root === null) {
       return null;
     }
 
-    return this._get(key, this._root).value;
+    const result = this._get(key, this._root);
+    if (result === null) {
+      return null;
+    }
+
+    return result.value;
   }
 
   /**
@@ -216,7 +220,7 @@ export class AvlTree<K, V> {
    * @param root The root of the tree to search in.
    * @return The value of the node or null if it doesn't exist.
    */
-  private _get(key: K, root: Node<K, V>): Node<K, V> {
+  private _get(key: K, root: Node<K, V>): Node<K, V> | null {
     const result = this._compare(key, root.key);
     if (result === 0) {
       return root;
@@ -249,16 +253,22 @@ export class AvlTree<K, V> {
   }
 
   /**
-   * @return The minimum key in the tree.
+   * @return The minimum key in the tree or null if there are no nodes.
    */
-  public findMinimum(): K {
+  public findMinimum(): K | null {
+    if (this._root === null) {
+      return null;
+    }
     return this._minValueNode(this._root).key;
   }
 
   /**
-   * Gets the maximum key in the tree.
+   * Gets the maximum key in the tree or null if there are no nodes.
    */
-  public findMaximum(): K {
+  public findMaximum(): K | null {
+    if (this._root === null) {
+      return null;
+    }
     return this._maxValueNode(this._root).key;
   }
 
