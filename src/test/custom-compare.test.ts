@@ -12,8 +12,16 @@ describe('Custom compare function', () => {
     assert.equal(tree.findMaximum(), 1);
     tree.delete(3);
     assert.equal(tree.size, 2);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 2);
     assert.equal(tree.root.left, null);
+    if (!tree.root.right) {
+      assert.fail('tree.root.right must exist');
+      return;
+    }
     assert.equal(tree.root.right.key, 1);
   });
 

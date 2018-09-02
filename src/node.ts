@@ -5,9 +5,9 @@
  */
 
 export class Node<K, V> {
-  public left: Node<K, V> = null;
-  public right: Node<K, V> = null;
-  public height: number = null;
+  public left: Node<K, V> | null = null;
+  public right: Node<K, V> | null = null;
+  public height: number | null = null;
 
   /**
    * Creates a new AVL Tree node.
@@ -16,7 +16,7 @@ export class Node<K, V> {
    */
   constructor(
     public key: K,
-    public value: V
+    public value: V | undefined
   ) {
   }
 
@@ -30,6 +30,9 @@ export class Node<K, V> {
     //   a   e -> b.rotateRight() -> c   b
     //  / \                             / \
     // c   d                           d   e
+    if (!this.left) {
+      throw new Error('Cannot rotate node right without a left child');
+    }
     const other = this.left;
     this.left = other.right;
     other.right = this;
@@ -48,6 +51,9 @@ export class Node<K, V> {
     // c   b   -> a.rotateLeft() ->   a   e
     //    / \                        / \
     //   d   e                      c   d
+    if (!this.right) {
+      throw new Error('Cannot rotate node left without a right child');
+    }
     const other = this.right;
     this.right = other.left;
     other.left = this;
@@ -62,10 +68,10 @@ export class Node<K, V> {
    * @return The height of the left child, or -1 if it doesn't exist.
    */
   public get leftHeight(): number {
-    if (!this.left) {
+    if (this.left === null) {
       return -1;
     }
-    return this.left.height;
+    return this.left.height || 0;
   }
 
   /**
@@ -74,9 +80,9 @@ export class Node<K, V> {
    * @return The height of the right child, or -1 if it doesn't exist.
    */
   public get rightHeight(): number {
-    if (!this.right) {
+    if (this.right === null) {
       return -1;
     }
-    return this.right.height;
+    return this.right.height || 0;
   }
 }

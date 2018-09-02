@@ -34,12 +34,28 @@ describe('delete', () => {
     tree.delete(7);
     tree.delete(5);
     tree.delete(6);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 2);
     assert.equal(tree.root.value, 2);
+    if (!tree.root.left) {
+      assert.fail('tree.root.left must exist');
+      return;
+    }
     assert.equal(tree.root.left.key, 1);
     assert.equal(tree.root.left.value, 1);
+    if (!tree.root.right) {
+      assert.fail('tree.root.right must exist');
+      return;
+    }
     assert.equal(tree.root.right.key, 4);
     assert.equal(tree.root.right.value, 4);
+    if (!tree.root.right.left) {
+      assert.fail('tree.root.right.left must exist');
+      return;
+    }
     assert.equal(tree.root.right.left.key, 3);
     assert.equal(tree.root.right.left.value, 3);
   });
@@ -63,12 +79,28 @@ describe('delete', () => {
     tree.delete(1);
     tree.delete(3);
     tree.delete(2);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 6);
     assert.equal(tree.root.value, 6);
+    if (!tree.root.left) {
+      assert.fail('tree.root.left must exist');
+      return;
+    }
     assert.equal(tree.root.left.key, 4);
     assert.equal(tree.root.left.value, 4);
+    if (!tree.root.left.right) {
+      assert.fail('tree.root.left.right must exist');
+      return;
+    }
     assert.equal(tree.root.left.right.key, 5);
     assert.equal(tree.root.left.right.value, 5);
+    if (!tree.root.right) {
+      assert.fail('tree.root.right must exist');
+      return;
+    }
     assert.equal(tree.root.right.key, 7);
     assert.equal(tree.root.right.value, 7);
   });
@@ -93,18 +125,46 @@ describe('delete', () => {
     tree.insert(3, 3);
     tree.insert(5, 5);
     tree.delete(8);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 4);
     assert.equal(tree.root.value, 4);
+    if (!tree.root.left) {
+      assert.fail('tree.root.left must exist');
+      return;
+    }
     assert.equal(tree.root.left.key, 2);
     assert.equal(tree.root.left.value, 2);
+    if (!tree.root.left.left) {
+      assert.fail('tree.root.left.left must exist');
+      return;
+    }
     assert.equal(tree.root.left.left.key, 1);
     assert.equal(tree.root.left.left.value, 1);
+    if (!tree.root.left.right) {
+      assert.fail('tree.root.left.right must exist');
+      return;
+    }
     assert.equal(tree.root.left.right.key, 3);
     assert.equal(tree.root.left.right.value, 3);
+    if (!tree.root.right) {
+      assert.fail('tree.root.right must exist');
+      return;
+    }
     assert.equal(tree.root.right.key, 6);
     assert.equal(tree.root.right.value, 6);
+    if (!tree.root.right.left) {
+      assert.fail('tree.root.right.left must exist');
+      return;
+    }
     assert.equal(tree.root.right.left.key, 5);
     assert.equal(tree.root.right.left.value, 5);
+    if (!tree.root.right.right) {
+      assert.fail('tree.root.right.right must exist');
+      return;
+    }
     assert.equal(tree.root.right.right.key, 7);
     assert.equal(tree.root.right.right.value, 7);
   });
@@ -129,18 +189,46 @@ describe('delete', () => {
     tree.insert(4, 4);
     tree.insert(6, 6);
     tree.delete(1);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 5);
     assert.equal(tree.root.value, 5);
+    if (!tree.root.left) {
+      assert.fail('tree.root.left must exist');
+      return;
+    }
     assert.equal(tree.root.left.key, 3);
     assert.equal(tree.root.left.value, 3);
+    if (!tree.root.left.left) {
+      assert.fail('tree.root.left.left must exist');
+      return;
+    }
     assert.equal(tree.root.left.left.key, 2);
     assert.equal(tree.root.left.left.value, 2);
+    if (!tree.root.left.right) {
+      assert.fail('tree.root.left.right must exist');
+      return;
+    }
     assert.equal(tree.root.left.right.key, 4);
     assert.equal(tree.root.left.right.value, 4);
+    if (!tree.root.right) {
+      assert.fail('tree.root.right must exist');
+      return;
+    }
     assert.equal(tree.root.right.key, 7);
     assert.equal(tree.root.right.value, 7);
+    if (!tree.root.right.left) {
+      assert.fail('tree.root.right.left must exist');
+      return;
+    }
     assert.equal(tree.root.right.left.key, 6);
     assert.equal(tree.root.right.left.value, 6);
+    if (!tree.root.right.right) {
+      assert.fail('tree.root.right.right must exist');
+      return;
+    }
     assert.equal(tree.root.right.right.key, 8);
     assert.equal(tree.root.right.right.value, 8);
   });
@@ -150,6 +238,10 @@ describe('delete', () => {
     tree.insert(1, 1);
     tree.insert(2, 2);
     tree.delete(1);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 2);
     assert.equal(tree.root.value, 2);
   });
@@ -159,6 +251,10 @@ describe('delete', () => {
     tree.insert(2, 2);
     tree.insert(1, 1);
     tree.delete(2);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 1);
     assert.equal(tree.root.value, 1);
   });
@@ -169,6 +265,10 @@ describe('delete', () => {
     tree.insert(1, 1);
     tree.insert(3, 3);
     tree.delete(2);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 3);
     assert.equal(tree.root.value, 3);
   });
@@ -181,6 +281,10 @@ describe('delete', () => {
     tree.insert(3, 3);
     tree.insert(5, 5);
     tree.delete(2);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 3);
     assert.equal(tree.root.value, 3);
   });

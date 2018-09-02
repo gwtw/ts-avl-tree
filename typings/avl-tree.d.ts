@@ -43,9 +43,10 @@ declare module '@tyriar/avl-tree' {
     /**
      * Gets the value of a node within the tree with a specific key.
      * @param key The key being searched for.
-     * @return The value of the node or null if it doesn't exist.
+     * @return The value of the node (which may be undefined), or null if it
+     * doesn't exist.
      */
-    public get(key: K): V;
+    public get(key: K): V | undefined | null;
 
     /**
      * Gets whether a node with a specific key is within the tree.
@@ -55,13 +56,13 @@ declare module '@tyriar/avl-tree' {
     public contains(key: K): boolean;
 
     /**
-     * @return The minimum key in the tree.
+     * @return The minimum key in the tree or null if there are no nodes.
      */
-    public findMinimum(): K;
+    public findMinimum(): K | null;
 
     /**
-     * Gets the maximum key in the tree.
+     * Gets the maximum key in the tree or null if there are no nodes.
      */
-    public findMaximum(): K;
+    public findMaximum(): K | null;
   }
 }

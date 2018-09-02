@@ -33,6 +33,10 @@ describe('insert', () => {
     tree.insert(3);
     tree.insert(2);
     tree.insert(1);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 2);
   });
 
@@ -50,6 +54,10 @@ describe('insert', () => {
     tree.insert(3);
     tree.insert(1);
     tree.insert(2);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 2);
   });
 
@@ -67,6 +75,10 @@ describe('insert', () => {
     tree.insert(1);
     tree.insert(2);
     tree.insert(3);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 2);
   });
 
@@ -84,6 +96,10 @@ describe('insert', () => {
     tree.insert(1);
     tree.insert(3);
     tree.insert(2);
+    if (!tree.root) {
+      assert.fail('tree.root must exist');
+      return;
+    }
     assert.equal(tree.root.key, 2);
   });
 });
