@@ -5,8 +5,7 @@
  */
 
 import { Node } from './node';
-
-export type CompareFunction<K> = (a: K, b: K) => number;
+import { AvlTree as AvlTreeApi, CompareFunction } from '@tyriar/avl-tree';
 
 /**
  * Represents how balanced a node's left and right children are.
@@ -24,8 +23,7 @@ const enum BalanceState {
   UNBALANCED_LEFT
 }
 
-// TODO: Extend the .d.ts class
-export class AvlTree<K, V> {
+export class AvlTree<K, V> implements AvlTreeApi<K, V> {
   protected _root: Node<K, V> | null = null;
   private _size: number = 0;
   private _compare: CompareFunction<K>;
@@ -212,7 +210,7 @@ export class AvlTree<K, V> {
     if (result === null) {
       return null;
     }
-    // TODO: test undefined here
+
     return result.value;
   }
 

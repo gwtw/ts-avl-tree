@@ -4,9 +4,9 @@
  * Released under MIT license. See LICENSE in the project root for details.
  */
 
-import { CompareFunction } from '../src/avlTree';
-
 declare module '@tyriar/avl-tree' {
+  export type CompareFunction<K> = (a: K, b: K) => number;
+
   /**
    * An AVL tree data structure with a key and optional value.
    */
