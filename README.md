@@ -13,6 +13,8 @@ Note that the primary purpose of this library is education but it should work in
 
 - 100% test coverage
 - Supports all common tree operations
+- Store keys with optional associated values
+- Optional custom compare function that can utilize both key and value to give full control over the order of the data
 
 ## Install
 
